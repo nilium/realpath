@@ -1,0 +1,73 @@
+realpath(1)
+===========
+
+NAME
+----
+realpath - print a resolved path
+
+
+SYNOPSIS
+--------
+*realpath* ['OPTIONS'] ['PATH']
+
+
+DESCRIPTION
+-----------
+realpath attempts to emit the absolute, canonicalized path for any path given
+to it. If no path is given as an argument, it will emit the canonicalized path
+of the working directory.
+
+Error output may optionally be stifled by passing the *-q* option.
+
+Any given 'PATH' is not required to exist, nor are any symlinks that are
+resolved required to exist. Symlinks will be repeatedly evaluated. If a cycle
+is detected, symlink evaluation stops.
+
+
+OPTIONS
+-------
+*-q*='false'::
+	Whether to stifle error output from realpath. If set, ssome errors will
+	be silently ignored and in the worst case the input path will be
+	yielded unmodified. Accepts 'true' or 'false' as explicit values.
+
+*-l*='1000'::
+	How many times to attempt to evaluate symlinks before just giving up.
+	Defaults to 1000. If set to 0, symlinks are not followed. In most
+	cases, this is unnecessary and a cycle will be detected.
+
+
+AUTHOR
+------
+This implementation of realpath is written by Noel Cower.
+
+
+COPYING
+-------
+
+Copyright (C) 2015 Noel R. Cower.
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this
+   list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice,
+   this list of conditions and the following disclaimer in the documentation
+   and/or other materials provided with the distribution.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+
+// vim: set syntax=asciidoc noexpandtab sw=8 ts=8 tw=79:
