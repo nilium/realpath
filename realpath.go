@@ -55,7 +55,7 @@ func canonicalize(p string, loops int) (string, error) {
 		loop++
 		if loop > loops {
 			if loops > 0 {
-				err = fmt.Errorf("looped too many times canonicalizing %q")
+				err = fmt.Errorf("looped too many times canonicalizing %q", orig)
 			}
 			return p, err
 		}
