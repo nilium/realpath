@@ -27,7 +27,7 @@ is detected, symlink evaluation stops.
 OPTIONS
 -------
 *-q*='false'::
-	Whether to stifle error output from realpath. If set, ssome errors will
+	Whether to stifle error output from realpath. If set, some errors will
 	be silently ignored and in the worst case the input path will be
 	yielded unmodified. Accepts 'true' or 'false' as explicit values.
 
