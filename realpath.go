@@ -44,32 +44,11 @@ func canonicalize(p string, loops int) (canonical string, err error) {
 	var tested = make(map[string]bool)
 	var loop int = 0
 
-	wd, err := os.Getwd()
-	if err != nil {
-		return p, err
-	}
-
-	defer func() {
-		cherr := os.Chdir(wd)
-		if cherr != nil {
-			log.Printf("Error changing directory back to %q: %v", wd, cherr)
-
-			if err == nil {
-				err = cherr
-			}
-		}
-	}()
-
 	for lp != p {
 		lp = p
 		p, err = filepath.Abs(p)
 		if err != nil {
 			return lp, err
-		}
-
-		err = os.Chdir(filepath.Dir(p))
-		if err != nil {
-			return p, err
 		}
 
 		loop++
@@ -94,7 +73,7 @@ func canonicalize(p string, loops int) (canonical string, err error) {
 				break
 			}
 
-			p, err = os.Readlink(p)
+			p, err = filepath.EvalSymlinks(p)
 			if os.IsNotExist(err) {
 				p = lp
 			}
